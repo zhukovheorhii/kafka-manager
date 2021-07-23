@@ -1,0 +1,8 @@
+server:
+  port: ${SERVER_PORT:5000}
+  error:
+    include-message: always
+
+spring:
+  application:
+    name: kafka-manager
