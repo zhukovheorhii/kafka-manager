@@ -3,7 +3,6 @@ package org.kafka.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
-import org.json.JSONObject;
 import org.kafka.ProducerProperties;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,11 +16,11 @@ public class ProducerController {
     public ResponseEntity newMessage(
             @RequestParam(value = "bootstrapServer", required = false) String bootstrapServer,
             @PathVariable String topic,
-            @PathVariable String key, @RequestBody JSONObject value
+            @PathVariable String key, @RequestBody String value
     ) {
         String response = "SUCCESS";
         try {
-            produceMessage(bootstrapServer, topic, key, om.writeValueAsString(value));
+            produceMessage(bootstrapServer, topic, key, value);
         } catch (Exception e) {
             response = e.getMessage();
         }
