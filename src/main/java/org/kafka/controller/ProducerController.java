@@ -1,6 +1,5 @@
 package org.kafka.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.kafka.ProducerProperties;
@@ -10,8 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class ProducerController {
-    private static final ObjectMapper om = new ObjectMapper();
-
     @PostMapping("/messages/{topic}/{key}")
     public ResponseEntity newMessage(
             @RequestParam(value = "bootstrapServer", required = false) String bootstrapServer,
