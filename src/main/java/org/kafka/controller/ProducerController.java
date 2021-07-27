@@ -1,8 +1,9 @@
 package org.kafka.controller;
 
-import net.minidev.json.JSONObject;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
+import org.json.JSONObject;
 import org.kafka.ProducerProperties;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class ProducerController {
+    private static final ObjectMapper om = new ObjectMapper();
 
     @PostMapping("/messages/{topic}/{key}")
     public ResponseEntity newMessage(
@@ -19,7 +21,7 @@ public class ProducerController {
     ) {
         String response = "SUCCESS";
         try {
-            produceMessage(bootstrapServer, topic, key, value.toJSONString());
+            produceMessage(bootstrapServer, topic, key, om.writeValueAsString(value));
         } catch (Exception e) {
             response = e.getMessage();
         }

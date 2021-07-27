@@ -14,7 +14,7 @@ public class ProducerProperties extends Properties {
             this.bootstrapServer = bootstrapServer;
         }
         this.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, this.bootstrapServer);
-        this.put(ProducerConfig.CLIENT_ID_CONFIG, "kafka-manager" + UUID.randomUUID());
+        this.put(ProducerConfig.CLIENT_ID_CONFIG, "kafka-manager-producer" + UUID.randomUUID());
         this.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
         this.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
     }
