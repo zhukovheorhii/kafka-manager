@@ -20,3 +20,14 @@ Curl example to consume messages: </br>
 
 Run in docker using
 `docker pull heorhiizhukov/kafka-manager:latest`
+
+docker-compose example:
+
+````
+version: '1.0'
+services:
+  kafkamanager:
+    image: heorhiizhukov/kafka-manager:1.0-SNAPSHOT
+    ports:
+      - "5000:5000"
+````
