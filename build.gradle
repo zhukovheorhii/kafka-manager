@@ -1,5 +1,7 @@
 plugins {
     id 'java'
+    id 'com.palantir.docker' version '0.26.0'
+    id 'org.springframework.boot' version "2.5.3"
 }
 
 group 'org.kafka'
@@ -14,6 +16,16 @@ dependencies {
     implementation 'org.apache.kafka:kafka-streams:2.8.0'
 }
 
-test {
-    useJUnitPlatform()
+docker {
+    dependsOn(bootJar)
+    String imageName = "heorhiizhukov/kafka-manager:latest"
+    String jarName = "${project.name}-${project.version}.jar"
+    String jarPath = "build/libs/$jarName"
+    name = imageName
+    files(jarPath, "${project.path}/Dockerfile")
+
+    Map<String, String> args = new HashMap()
+    args.put("JAR_FILENAME", jarName)
+    args.put("JAR_FILEPATH", jarName)
+    buildArgs(args)
 }
