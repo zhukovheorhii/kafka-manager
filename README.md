@@ -3,17 +3,20 @@
 Easy create templates using POSTMAN
 
 Curl example to produce a message: </br>
-`curl --location --request POST 'http://localhost:5000/messages/TOPIC_NAME/SOME_KEY?bootstrapServer=PLAINTEXT://localhost:9092' \
+`curl --location --request POST 'http://localhost:5000/topics/TOPIC_NAME/keys/SOME_KEY?bootstrapServer=PLAINTEXT://localhost:9092' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-"test": "test",
-"hello": "world"
+"headers": {
+"header1": "value",
+"header2": "value"
+},
+"body": "SOME_STRING"
 }'`
 
 </br></br>
 
 Curl example to consume messages: </br>
-`curl --location --request GET 'localhost:5000/messages/TEST_TOPIC?bootstrapServer=PLAINTEXT://localhost:9092'`
+`curl --location --request GET 'localhost:5000/topics/SOME_TOPIC?bootstrapServer=PLAINTEXT://localhost:9092'`
 
 </br></br>
 `bootstrapServer` - is not required query param. Default `bootstrapServer` is `PLAINTEXT://localhost:9092`

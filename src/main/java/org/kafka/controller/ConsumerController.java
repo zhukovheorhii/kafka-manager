@@ -19,7 +19,7 @@ import java.util.*;
 public class ConsumerController {
     private static final ObjectMapper om = new ObjectMapper();
 
-    @GetMapping("/messages/{topic}")
+    @GetMapping("/topics/{topic}")
     public ResponseEntity getMessages(
             @RequestParam(value = "bootstrapServer", required = false) String bootstrapServer,
             @PathVariable String topic
